@@ -1,0 +1,84 @@
+import cx_Oracle
+def creatsturec():
+    try:
+        con=cx_Oracle.connect("system/tiger@localhost/ORCL")
+        cur=con.cursor()
+        cur.execute("create table result(sno number(2), sname varchar2(10),c number(2,2),java number(2,2),ptyhon number(2,2),totmarks number(3,2),per number(3,2),grade varchar2(1))")
+        con.commit()
+        print("Result table created succefully")
+    except cx_Oracle.DatabaseError as db:
+        print("prob in database",db)
+
+creatsturec()
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#StudMarksReport.py
+import cx_Oracle
+class Student:
+	def  readstudevalues(self):
+		self.sno=int(input("Enter Student Number:"))
+		self.sname=input("Enter Student Name:")
+		self.cm=int(input("Enter Marks in C:"))
+		self.jm=int(input("Enter Marks in java:"))
+		self.pym=int(input("Enter Marks in Python:"))
+	def calculations(self):
+		self.totmarks=self.cm+self.jm+self.pym
+		self.percent=(self.totmarks/300)*100
+	def decidegrade(self):
+		if((self.cm<40) or (self.jm<40) or (self.pym<40) ):
+			self.grade="FAIL"
+		else:
+			if((self.totmarks<=300) and (self.totmarks>=250)):
+				self.grade="DISTINCTION"
+			elif((self.totmarks<=249) and (self.totmarks>=200)):
+				self.grade="FIRST"
+			elif((self.totmarks<=199) and (self.totmarks>=150)):
+				self.grade="SECOND"
+			elif((self.totmarks<=149) and (self.totmarks>=120)):
+				self.grade="THIRD"
+	def  savestudresult(self):
+		try:
+			con=cx_Oracle.connect("scott/tiger@127.0.0.1/orcl")
+			cur=con.cursor()
+			cur.execute("insert into result values(%d,'%s',%d,%d,%d,%d,%f,'%s')"%(self.sno,self.sname,self.cm,self.jm,self.pym,self.totmarks,self.percent,self.grade) )
+			con.commit()
+			print("\n{} Student Result Saved Successfully:".format(cur.rowcount))
+		except cx_Oracle.DatabaseError as db:
+			print("Prob in Database:",db)
+		
+#main program
+s=Student()
+s.readstudevalues()
+s.calculations()
+s.decidegrade()
+s.savestudresult()
+
+
+import cx_Oracle
+def retriev():
+try:
+    con=cx_Oracle.connect("system/tiger@localhost/ORCL")
+    cur=con.cursor()
+    hallticeket=int(input("Enter student hallticketno"))
+    cur.execute("select * from result where sno=%d" %hallticeket)
+    record=cur.fetchall()
+    print("*"*100)
+    col=cur.description
+    if(cur.rowcount>0):
+        for c1 in col:
+            print("{}".format(c1[0]),end="\t\t")
+        print()
+        for rec in record:
+            for val in rec:
+                print("{}  ".format(val),end="\t\t")
+            print()
+    elif(cur.rowcount==0):
+        print("\t\tNo record not found\t\t")
+
+
+    print("*"*100)
+
+except cx_Oracle.DatabaseError as db:
+    print("Prob in database",db)
+
+ retriev()
