@@ -1,3 +1,4 @@
+#createtable.py
 import cx_Oracle
 def creatsturec():
     try:
@@ -53,6 +54,8 @@ s.calculations()
 s.decidegrade()
 s.savestudresult()
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+#retrieve.py
 
 import cx_Oracle
 def retriev():
