@@ -1,0 +1,103 @@
+<html>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+		background: url('https://media.istockphoto.com/id/159114773/photo/open-book-with-blank-pages-against-wall-background.jpg?s=612x612&w=0&k=20&c=wip3lwvUrWFzsmoQptvEq2vEywIKC5aFKiALEZNGXtQ=') center center;
+		background-size: 100% 100%;
+		/* Adjust the values as needed */
+		background-attachment: fixed;
+	}
+
+	header {
+		background-color: rgba(51, 51, 51, 0.8);
+		padding: 10px;
+		text-align: center;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-around;
+		padding: 10px;
+	}
+
+	nav a {
+		color: white;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 16px;
+		margin-right: 50px;
+	}
+
+	nav a:hover {
+		color: white;
+	}
+
+	.welcome-section {
+		text-align: center;
+		margin-top: 20px;
+		color: white;
+	}
+
+	p {
+		color: black;
+		font-size: 40px;
+		margin-top: 150px;
+	}
+
+	nav a.lgt {
+		margin-left: 100px;
+	}
+
+	#formmmmm {
+		margin-left: 480px;
+		margin-top: 80px;
+		border: 2px solid lightgrey;
+		background-color: white;
+		width: 270px;
+		box-shadow: 5px 6px 8px grey;
+		border-radius: 12px;
+	}
+
+	label {
+		margin-left: 50px;
+	}
+
+	#num1 {
+		margin-left: 50px;
+	}
+</style>
+
+<body>
+	<header>
+		<nav>
+			<a href="/status">Status</a>
+			<a href="/retrievebook">Available Books</a>
+			<a href="/addBookPage">Add Book</a>
+
+			<a href="/returnbookPage">Return Book</a>
+			<form action="/searchBook">
+				<input type="text" placeholder="Search Book" name="book_Name" required>
+				<button type="submit" style="margin-right:260px">Submit</button>
+			</form>
+			<a href="/logout" class="lgt">Logout</a>
+		</nav>
+	</header>
+	<form action="/checkStatus" id="formmmmm">
+		<br>
+		<label>Enter Student_Id:</label>
+		<input type="number" name="id" id="num1">
+
+		<br><br>
+		<input type="submit" name="submit"
+			style="margin-left: 80px;background-color: darkslategrey;color: white;width: 100px;border-radius: 12px;padding: 4px 0;">
+		<br><br>
+
+	</form>
+</body>
+
+</html>

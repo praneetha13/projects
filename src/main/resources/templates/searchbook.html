@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LoginContentPage</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background: url('https://media.istockphoto.com/id/159114773/photo/open-book-with-blank-pages-against-wall-background.jpg?s=612x612&w=0&k=20&c=wip3lwvUrWFzsmoQptvEq2vEywIKC5aFKiALEZNGXtQ=') center center;
+			background-size: 100% 600px;
+			/* Adjust the values as needed */
+			background-attachment: fixed;
+		}
+
+		header {
+			background-color: rgba(51, 51, 51, 0.8);
+			padding: 10px;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		nav {
+			display: flex;
+			justify-content: space-around;
+			padding: 10px;
+		}
+
+		nav a {
+			color: white;
+			text-decoration: none;
+			font-weight: bold;
+			font-size: 16px;
+			margin-right: 50px;
+		}
+
+		nav a:hover {
+			color: white;
+		}
+
+		#tble {
+			margin-top: 120px;
+
+			/* #tble {
+      margin-top: 120px;
+    }
+
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }*/
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<a href="/status">Status</a>
+			<a href="/retrievebook">Available Books</a>
+			<a href="/addBookPage">Add Book</a>
+			<a href="/returnbookPage">Return Book</a>
+			<form action="/searchBook">
+				<input type="text" placeholder="Search Book" name="book_Name" required>
+				<button type="submit" style="margin-right: 260px;">Submit</button>
+
+			</form>
+			<a href="/logout" class="lgt">Logout</a>
+		</nav>
+	</header>
+
+
+
+	<table id="tble" border="1" align="center">
+		<thead>
+			<tr>
+				<th>BookId</th>
+				<th>Book Name</th>
+				<th>Author</th>
+				<th>Count</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Loop through your list of objects and create rows -->
+			<tr th:each="book : ${mssg}">
+				<td th:text="${book.book_id}"></td>
+				<td th:text="${book.book_name}"></td>
+				<td th:text="${book.book_author}"></td>
+				<td th:text="${book.book_count}"></td>
+				<!-- Add more columns as needed -->
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
